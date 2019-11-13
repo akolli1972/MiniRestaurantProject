@@ -29,9 +29,21 @@ const reservations = [
   }
 ];
 
+const waitlist = [];
+
 // ===== Set up routes ===== //
 
-app.get("/api/reservations", function(request, response) {
+app.get("/api/resview", function(request, response) {
+  response.json(reservations);
+});
+
+app.post("/api/reservation", function(request, response) {
+  reservations.push({
+    id: reservations.length + 1,
+    name: request.body.name,
+    phone: request.body.phone,
+    email: request.body.email
+  });
   response.json(reservations);
 });
 
