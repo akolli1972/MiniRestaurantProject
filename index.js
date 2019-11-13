@@ -44,6 +44,7 @@ app.post("/api/reservation", function(request, response) {
     phone: request.body.phone,
     email: request.body.email
   });
+  console.log(request.body);
   response.json(reservations);
 });
 
