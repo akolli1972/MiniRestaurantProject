@@ -38,14 +38,25 @@ app.get("/api/resview", function(request, response) {
 });
 
 app.post("/api/reservation", function(request, response) {
-  reservations.push({
-    id: reservations.length + 1,
-    name: request.body.name,
-    phone: request.body.phone,
-    email: request.body.email
-  });
-  console.log(request.body);
-  response.json(reservations);
+  if (reservations.length <= 5) {
+    reservations.push({
+      id: reservations.length + 1,
+      name: request.body.name,
+      phone: request.body.phone,
+      email: request.body.email
+    });
+    console.log(request.body);
+    response.json(reservations);
+  } else {
+    waitlist.push({
+      id: waitlist.length + 5,
+      name: request.body.name,
+      phone: request.body.phone,
+      email: request.body.email
+    });
+    console.log(request.body);
+    response.json(wiatlist);
+  }
 });
 
 // ===== Start the server ===== //
