@@ -9,12 +9,30 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ===== Set up routs ===== //
+// ----- Used for Static Pages -----//
+app.use(express.static("public"));
 
-app.get("/test", function(request, response) {
-  response.end(
-    "This is a test page. If you hit it, things are sort of working."
-  );
+// ===== Data ===== //
+
+const reservations = [
+  {
+    name: "Kaiisha Oliver",
+    phone: "555-123-4567",
+    email: "email@email.com",
+    id: "0"
+  },
+  {
+    name: "Donald Duck",
+    phone: "555-123-4567",
+    email: "email@email.com",
+    id: "1"
+  }
+];
+
+// ===== Set up routes ===== //
+
+app.get("/api/reservations", function(request, response) {
+  response.json(reservations);
 });
 
 // ===== Start the server ===== //
